@@ -36,16 +36,21 @@
 		<?php
 		$result = $conn->prepare($query);
 		$result->execute();
+		$count = 0;
 			while($row = $result->fetch(PDO::FETCH_ASSOC)) {	
-				echo "<div class='article'>
-					<h2 class='article-date'>" . "#" . addslashes(htmlentities($row['id'])) . " | " . addslashes(htmlentities($row['date'])) . "</h2>
+				if($count == 0) {
+					echo "<div class='article'>";
+				} else {
+					echo "<div class='article borders'>";
+				}
+				echo "<h2 class='article-date'>" . "#" . addslashes(htmlentities($row['id'])) . " | " . addslashes(htmlentities($row['date'])) . "</h2>
 					<h1 class='article-title'>" . addslashes(htmlentities($row['title'])) ."</h1>
 					<p class='article-message'>" . addslashes(htmlentities($row['message'])) ."</p>
 					<h2 class='article-author'>" . addslashes(htmlentities($row['author'])) . "</h2>
 				</div>";
+				$count++;
 			}
 		?>
-
 	</div>
 </body>
 </html>

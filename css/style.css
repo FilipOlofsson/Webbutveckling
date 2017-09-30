@@ -17,11 +17,12 @@ body {
 	margin-top: 125px;
 
 }
-
+.borders {
+	border-top: solid 1px lightgray;
+}
 .article {
 	width:50%;
 	margin:auto;
-	border-bottom: solid 1px lightgray;
 	padding:20px;
 	margin-bottom: 30px;
 }
