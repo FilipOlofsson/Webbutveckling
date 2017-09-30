@@ -1,6 +1,8 @@
 <?php
-	require_once("data.php");
 	require_once("../dbconnection.php");
+
+	$query = "SELECT title, author, message, date FROM posts ORDER BY id DESC";
+
 ?>
 
 <!DOCTYPE html>
@@ -15,12 +17,15 @@
 			<a class="navbar-link" href="index.php">Blog Posts</a>
 			<a class="navbar-link" href="newpost.php">New Blog Post</a>
 		</div>
+		
 		<?php
-			for($i = 0; $i < sizeof($data); $i++) {
+		$result = $conn->prepare($query);
+		$result->execute();
+			while($row = $result->fetch(PDO::FETCH_ASSOC)) {	
 				echo "<div class='article'>
-					<h1 class='article-title'>" . $data[$i]["title"] ."</h1>
-					<p class='article-message'>" . $data[$i]["message"] ."</p>
-					<h2 class='article-author'>" . $data[$i]["author"] ."</h2>
+					<h1 class='article-title'>" . $row['title'] ."</h1>
+					<p class='article-message'>" . $row['message'] ."</p>
+					<h2 class='article-author'>" . $row['author'] ." | " . $row['date'] . "</h2>
 				</div>";
 			}
 		?>
