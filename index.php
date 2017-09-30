@@ -23,9 +23,9 @@
 		$result->execute();
 			while($row = $result->fetch(PDO::FETCH_ASSOC)) {	
 				echo "<div class='article'>
-					<h1 class='article-title'>" . $row['title'] ."</h1>
-					<p class='article-message'>" . $row['message'] ."</p>
-					<h2 class='article-author'>" . $row['author'] ." | " . $row['date'] . "</h2>
+					<h1 class='article-title'>" . addslashes(htmlentities($row['title'])) ."</h1>
+					<p class='article-message'>" . addslashes(htmlentities($row['message'])) ."</p>
+					<h2 class='article-author'>" . addslashes(htmlentities($row['author'])) ." | " . $row['date'] . "</h2>
 				</div>";
 			}
 		?>
