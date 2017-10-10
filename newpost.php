@@ -32,7 +32,7 @@
 			<a class="navbar-link" href="newpost.php">New Blog Post</a>
 		</div>
 		
-		<div class="article">
+		<div class="article article-newpost">
 		<h1 class="newpost-title">New Post</h1>
 			<form method="POST" action="newpost.php" class="newpost-form">
 				<label class="newpost-label">Author</label>

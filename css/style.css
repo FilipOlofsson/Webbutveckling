@@ -18,7 +18,7 @@ body {
 
 }
 .borders {
-	border-top: solid 1px lightgray;
+	border-top: solid 1.5px lightgray;
 }
 .article {
 	width:50%;
@@ -99,6 +99,7 @@ body {
 	letter-spacing: 1.5px;
 	color:rgba(150, 0, 150, 1);
 	transition-duration: 0.06s;
+	cursor: pointer;
 }
 .submit-button:hover {
 	border:solid 3px rgba(150, 0, 150, 1);
@@ -111,6 +112,28 @@ body {
 	letter-spacing: 2px;
 	margin-bottom: 40px;
 }
+h1.newpost-title {
+	display: table;
+    white-space: nowrap;
+}
+
+.newpost-title:before, .newpost-title:after {
+      border-top: 1.5px solid black;
+      content: '';
+      display: table-cell;
+      position: relative;
+      top: 0.5em;
+      width: 45%;
+}
+
+.newpost-title:before {
+	right: 1.5%;
+}
+
+.newpost-title:after {
+	left: 1.5%;
+}
+
 .newpost-label {
 	margin-top: 10px;
 	text-align: center;
