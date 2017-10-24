@@ -1,22 +1,9 @@
 <?php
 
-	/* 
-		Roliga saker att göra om jag får tid:
-
-		Bättre formatering på message, den hanterar inte line breaks så som den är nu.
-		kan säkert fixa det nu men någonting måste man ha kvar att göra på lektionen.
-
-		Ändra encodingen på databasen för att förhindra vissa SQLi som involverar enkodningen av characters.
-
-		Färgerna, känns som att något är "fel" med bakgrundsfärgen, typ som att den är för ljus.
-
-		Uppdaterad 2017-09-30 18:15 
-
-	*/
-
 	require_once("dbconnection.php");
 
 	$query = "SELECT id, title, author, message, date FROM posts ORDER BY id DESC";
+
 
 ?>
 
@@ -31,6 +18,7 @@
 		<div class="navbar">
 			<a class="navbar-link" href="index.php">Blog Posts</a>
 			<a class="navbar-link" href="newpost.php">New Blog Post</a>
+			<a class="navbar-link" href="manage.php">Manage Posts</a>
 		</div>
 		
 		<?php
@@ -43,10 +31,18 @@
 				} else {
 					echo "<div class='article borders'>";
 				}
-				echo "<h2 class='article-date'>" . "#" . addslashes(htmlentities($row['id'])) . " | " . addslashes(htmlentities($row['date'])) . "</h2>
-					<h1 class='article-title'>" . addslashes(htmlentities($row['title'])) ."</h1>
-					<p class='article-message'>" . addslashes(htmlentities($row['message'])) ."</p>
-					<h2 class='article-author'>" . addslashes(htmlentities($row['author'])) . "</h2>
+				$message = str_replace('&lt;b&gt;', '<b>', htmlentities($row['message']));
+				$message = str_replace('&lt;/b&gt;', '</b>', $message);
+				$message = str_replace('\n', '&lt;br&gt;', $message);
+				$message = str_replace('&lt;br&gt;', '<br>', $message);
+				$id = htmlentities($row['id']);
+				$date = htmlentities($row['date']);
+				$author = htmlentities($row['author']);
+				$title = htmlentities($row['title']);
+				echo "<h1 class='article-title'>" . $title ."</h1>
+					<h2 class='article-date'>" . "#" . $id . " | " . $date . "</h2>
+					<p class='article-message'>" . $message ."</p>
+					<h2 class='article-author'>" . $author . "</h2>
 				</div>";
 				$count++;
 			}

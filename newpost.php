@@ -4,13 +4,14 @@
 
 	if(isset($_POST['author']) && isset($_POST['title']) && isset($_POST['message'])) {
 
-		$query = $conn->prepare("INSERT INTO posts(title, author, message) VALUES (:title, :author, :message) ");
+		$query = $conn->prepare("INSERT INTO posts(title, author, message) 
+			VALUES (:title, :author, :message) ");
 
 		try {
 			$query->execute(array(
 				"title" => $_POST['title'],
 				"author" => $_POST['author'],
-				"message" => $_POST['message']
+				"message" => str_replace("\n", "<br>", $_POST['message'])
 			));
 			$message = "Success!";
 		} catch (Exception $e) {			// Har inte testat om den faktiskt fångar alla exceptions
@@ -30,6 +31,7 @@
 		<div class="navbar">
 			<a class="navbar-link" href="index.php">Blog Posts</a>
 			<a class="navbar-link" href="newpost.php">New Blog Post</a>
+			<a class="navbar-link" href="manage.php">Manage Posts</a>
 		</div>
 		
 		<div class="article article-newpost">
